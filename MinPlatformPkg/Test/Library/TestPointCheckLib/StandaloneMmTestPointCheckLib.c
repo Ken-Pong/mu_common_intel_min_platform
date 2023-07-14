@@ -35,6 +35,11 @@ TestPointDumpMmLoadedImage (
   );
 
 EFI_STATUS
+TestPointCheckStandaloneMmMemAttribute (
+  VOID
+  );
+
+EFI_STATUS
 TestPointCheckMmPaging (
   VOID
   );
@@ -139,7 +144,29 @@ TestPointReadyToLockMmMemoryAttributeTableFunctional (
   VOID
   )
 {
-  return EFI_UNSUPPORTED;
+  EFI_STATUS  Status;
+  BOOLEAN     Result;
+
+  DEBUG ((DEBUG_INFO, "======== TestPointReadyToLockMmMemoryAttributeTableFunctional - Enter\n"));
+
+  Result = TRUE;
+  TestPointDumpMmLoadedImage ();
+  Status = TestPointCheckStandaloneMmMemAttribute ();
+  if (EFI_ERROR(Status)) {
+    Result = FALSE;
+  }
+
+  if (Result) {
+    TestPointLibSetFeaturesVerified (
+      PLATFORM_TEST_POINT_ROLE_PLATFORM_IBV,
+      NULL,
+      TEST_POINT_INDEX_BYTE6_SMM,
+      TEST_POINT_BYTE6_SMM_READY_TO_LOCK_SMM_MEMORY_ATTRIBUTE_TABLE_FUNCTIONAL
+      );
+  }
+
+  DEBUG ((DEBUG_INFO, "======== TestPointReadyToLockMmMemoryAttributeTableFunctional - Exit\n"));
+  return EFI_SUCCESS;
 }
 
 /**

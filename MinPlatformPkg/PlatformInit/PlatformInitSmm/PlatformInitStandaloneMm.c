@@ -42,6 +42,7 @@ MmReadyToLockEventNotify (
   IN EFI_HANDLE      Handle
   )
 {
+  TestPointMmReadyToLockMmMemoryAttributeTableFunctional ();
   TestPointMmReadyToLockSecureMmCommunicationBuffer ();
   return EFI_SUCCESS;
 }
