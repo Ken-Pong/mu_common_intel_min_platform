@@ -255,7 +255,7 @@ TestPointPciEnumerationDonePciResourceAllocated (
   if (Result) {
     TestPointLibSetFeaturesVerified (
       PLATFORM_TEST_POINT_ROLE_PLATFORM_IBV,
-      NULL,
+      TEST_POINT_IMPLEMENTATION_ID_PLATFORM_DXE,
       3,
       TEST_POINT_BYTE3_PCI_ENUMERATION_DONE_RESOURCE_ALLOCATED
       );
